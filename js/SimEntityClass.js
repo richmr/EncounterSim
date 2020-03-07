@@ -6,16 +6,31 @@ class SimEntity {
   entityID = -1;
   name = "Not Set";
   type = "Not Set";
-  hitPoints = 0;
-  AC = 10;
-  level = 1;
-  STR = 10;
-  DEX = 10;
-  WIS = 10;
-  INT = 10;
-  CHA = 10;
-  CON = 10;
-  Proficiency = 0;
+  Characteristics = {
+    HitPoints: 0,
+    AC: 10,
+    level: 1,
+    Proficiency: 0
+  };
+  Attributes = {
+    STR: 10,
+    DEX: 10,
+    WIS: 10,
+    INT: 10,
+    CHA: 10,
+    CON: 10,
+  };
+  Saves = {
+    STR: 0,
+    DEX: 0,
+    WIS: 0,
+    INT: 0,
+    CHA: 0,
+    CON: 0,
+    Proficient: []
+  };
+  // Skills not part of entities because they are generally secondary to combat
+  // Don't @ me
   
 
   constructor(entityID, name, type) {
