@@ -20,5 +20,19 @@ var Dice = {
     } else {
       throw "Dice.roll(): dice input not in the form of '1d20'";
     }
+  },
+
+  rollWithAdvantage: function(dice = "1d20", bonus = 0) {
+    // Rolls the dice twice and returns the max
+    roll1 = Dice.roll(dice, bonus);
+    roll2 = Dice.roll(dice, bonus);
+    return Math.max(roll1, roll2);
+  },
+
+  rollWithDisadvantage: function(dice = "1d20", bonus = 0) {
+    // Rolls the dice twice and returns the min
+    roll1 = Dice.roll(dice, bonus);
+    roll2 = Dice.roll(dice, bonus);
+    return Math.min(roll1, roll2);
   }
 }

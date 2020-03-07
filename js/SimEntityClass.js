@@ -7,6 +7,16 @@ class SimEntity {
   name = "Not Set";
   type = "Not Set";
   hitPoints = 0;
+  AC = 10;
+  level = 1;
+  STR = 10;
+  DEX = 10;
+  WIS = 10;
+  INT = 10;
+  CHA = 10;
+  CON = 10;
+  Proficiency = 0;
+  
 
   constructor(entityID, name, type) {
     this.entityID = entityID;
@@ -32,6 +42,4 @@ class SimEntity {
   TakeEffect() {
     throw "SimEntity.TakeEffect(): This method must be overridden by subclass";
   }
-
-
 }
