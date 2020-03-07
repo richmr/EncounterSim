@@ -10,3 +10,5 @@ function testRoll() {
     console.log(die + " Min:" + Math.min(...trials));
   })
 }
+
+console.log("EncounterSim Reloaded");

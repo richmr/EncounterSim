@@ -15,23 +15,24 @@ class SimEntity {
   Attributes = {
     STR: 10,
     DEX: 10,
-    WIS: 10,
-    INT: 10,
-    CHA: 10,
     CON: 10,
+    INT: 10,
+    WIS: 10,
+    CHA: 10,
   };
   Saves = {
     STR: 0,
     DEX: 0,
-    WIS: 0,
-    INT: 0,
-    CHA: 0,
     CON: 0,
+    INT: 0,
+    WIS: 0,
+    CHA: 0,
+    // Put saves the entity is proficient in here
+    // Must match "STR", "DEX", etc for auto calcs to work
     Proficient: []
   };
   // Skills not part of entities because they are generally secondary to combat
   // Don't @ me
-  
 
   constructor(entityID, name, type) {
     this.entityID = entityID;
@@ -41,12 +42,24 @@ class SimEntity {
 
   // Entities can override
   WhoAmI() {
-    response = {
+    var response = {
       "EntityID":this.entityID,
-      "Name":this.Name,
+      "Name":this.name,
       "Type":this.type
     };
     return response
+  }
+
+  CalcSaves() {
+    // Calculate save values based on attributes and proficiency
+    // Relies on SkillAndSave
+    for (var save in this.Attributes) {
+      var newsave = SkillAndSave.bonus(this.Attributes[save]);
+      if (this.Saves["Proficient"].includes(save)) {
+        newsave += this.Characteristics["Proficiency"];
+      }
+      this.Saves[save] = newsave;
+    }
   }
 
   // Entities MUST override

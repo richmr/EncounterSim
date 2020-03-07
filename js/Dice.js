@@ -22,6 +22,16 @@ var Dice = {
     }
   },
 
+  rollDouble20: function(bonus = 0) {
+    // Many situations require rolling skill/attack/save with adv or dis
+    // This returns an array with double roll with appropriate bonus
+    // If this was intended for a normal roll, just take the first one
+    result = [];
+    result.push(Dice.roll("1d20", bonus));
+    result.push(Dice.roll("1d20", bonus));
+    return result;
+  },
+
   rollWithAdvantage: function(dice = "1d20", bonus = 0) {
     // Rolls the dice twice and returns the max
     roll1 = Dice.roll(dice, bonus);
