@@ -6,6 +6,11 @@ class SimEntity {
   entityID = -1;
   name = "Not Set";
   type = "Not Set";
+  // I'm on:
+  Team = "Not Set";
+  // I attack the
+  Other = "Not Set";
+  LastAttacker = -1;
   Characteristics = {
     HitPoints: 0,
     AC: 10,
@@ -62,12 +67,22 @@ class SimEntity {
     }
   }
 
+  React(EffectObj) {
+    // Entities might need to override
+    const reaction = false;
+    return reaction;
+  }
+
+
+  TakeEffect(EffectObj) {
+    // Many responses are the same.  Entities can override but default responses may be adequate
+    this.LastAttacker = EffectObj["EntityID"];
+
+  }
   // Entities MUST override
   Act() {
     throw "SimEntity.Act(): This method must be overridden by subclass";
   }
 
-  TakeEffect() {
-    throw "SimEntity.TakeEffect(): This method must be overridden by subclass";
-  }
+
 }
