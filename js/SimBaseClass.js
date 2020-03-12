@@ -11,7 +11,7 @@ class SimBase {
   }
 
   WhoIsThis() {
-    const iam = {EntityID: this.entityID, Name: this.name}
+    const iam = {EntityID: this.entityID, Name: this.name};
     return iam;
   }
 
@@ -40,6 +40,11 @@ class SimBase {
     return null;
   }
 
+  ActionResult(DataObj) {
+    console.log("SimBase.ActionResult(): " + this.name + " did not override ActionResult");
+    return null;
+  }
+
   Reset() {
     console.log("SimBase.Reset(): " + this.name + " did not override Reset");
     return null;
@@ -47,7 +52,7 @@ class SimBase {
 }
 
 class EntityBase extends SimBase {
-  var Details = {
+  Details = {
     name: "Not Set",
     type: "Not Set",
     // I'm on
@@ -55,6 +60,7 @@ class EntityBase extends SimBase {
     // I attack the
     Other: "Not Set",
     LastAttacker: -1,
+    LastTarget: -1,
     Characteristics: {
       HitPoints: 0,
       AC: 10,
@@ -87,6 +93,17 @@ class EntityBase extends SimBase {
     this.entityID = entityID;
   }
 
+  CalcSaves() {
+    // Calculate save values based on attributes and proficiency
+    // Relies on SkillAndSave
+    for (var save in this.Details.Attributes) {
+      var newsave = SkillAndSave.bonus(this.Details.Attributes[save]);
+      if (this.Details.Saves["Proficient"].includes(save)) {
+        newsave += this.Details.Characteristics["Proficiency"];
+      }
+      this.Details.Saves[save] = newsave;
+    }
+  }
 
 }
 
