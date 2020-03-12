@@ -8,7 +8,7 @@ function testRoll() {
     }
     console.log(die + " Max:" + Math.max(...trials));
     console.log(die + " Min:" + Math.min(...trials));
-  })
+  });
 }
 
 var testweap = {
