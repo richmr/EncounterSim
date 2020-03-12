@@ -15,28 +15,38 @@ class SimBase {
     return iam;
   }
 
-  RoundStart() {
+  RoundStart(DataObj) {
     console.log("SimBase.RoundStart(): " + this.name + " did not override RoundStart");
+    return null;
   }
 
   YourTurn(DataObj) {
     console.log("SimBase.YourTurn(): " + this.name + " did not override YourTurn");
+    return null;
+  }
+
+  TurnEnd(DataObj) {
+    console.log("SimBase.TurnEnd(): " + this.name + " did not override TurnEnd");
+    return null;
   }
 
   ReactionCheck(DataObj) {
     console.log("SimBase.ReactionCheck(): " + this.name + " did not override ReactionCheck");
+    return null;
   }
 
   TakeEffect(DataObj) {
     console.log("SimBase.TakeEffect(): " + this.name + " did not override TakeEffect");
+    return null;
   }
 
   Reset() {
     console.log("SimBase.Reset(): " + this.name + " did not override Reset");
+    return null;
   }
 }
 
-class EntityBase {
+class EntityBase extends SimBase {
   var Details = {
     name: "Not Set",
     type: "Not Set",
@@ -69,8 +79,7 @@ class EntityBase {
       // Put saves the entity is proficient in here
       // Must match "STR", "DEX", etc for auto calcs to work
       Proficient: []
-    },
-    Capabilities: []
+    }
   }
 
   constructor(entityID, name) {
@@ -78,7 +87,73 @@ class EntityBase {
     this.entityID = entityID;
   }
 
-  addCapability(capabilityName) {
 
+}
+
+
+class WeaponBase extends SimBase {
+  // Not sure I need this for simple weapons..
+  constructor(name) {
+    super(name);
   }
+
+  // All methods are overridden for weapons so we don't have to write code we don't
+  // need
+  RoundStart(DataObj) {
+    return null;
+  }
+
+  YourTurn(DataObj) {
+    return null;
+  }
+
+  TurnEnd(DataObj) {
+    return null;
+  }
+
+  ReactionCheck(DataObj) {
+    return null;
+  }
+
+  TakeEffect(DataObj) {
+    return null;
+  }
+
+  Reset() {
+    return null;
+  }
+
+}
+
+class MagicBase extends SimBase {
+  constructor(name) {
+    super(name);
+  }
+
+  // All methods are overridden for weapons so we don't have to write code we don't
+  // need
+  RoundStart(DataObj) {
+    return null;
+  }
+
+  YourTurn(DataObj) {
+    return null;
+  }
+
+  TurnEnd(DataObj) {
+    return null;
+  }
+
+  ReactionCheck(DataObj) {
+    return null;
+  }
+
+  TakeEffect(DataObj) {
+    return null;
+  }
+
+  Reset() {
+    return null;
+  }
+
 }
