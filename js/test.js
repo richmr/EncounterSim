@@ -54,4 +54,24 @@ function testGoblinAttack() {
   return bobo.YourTurn(TeamObj);
 }
 
+function testGoblinGiveAndTake() {
+  var giver = new DumbMeleeGoblin(1);
+  var receiver = new DumbMeleeGoblin(2);
+  var TeamObj = {
+    monsters: [
+      giver.WhoAmI()
+    ],
+    players: [
+      receiver.WhoAmI()
+    ]
+  }
+  console.log("Teams: " + JSON.stringify(TeamObj));
+  giverAttack = giver.YourTurn(TeamObj);
+  console.log("attack: " + JSON.stringify(giverAttack));
+  receiverResponse = receiver.TakeEffect(giverAttack);
+  console.log("response: " + JSON.stringify(receiverResponse));
+  console.log("reciever stats: " + JSON.stringify(receiver.WhoAmI()));
+
+}
+
 console.log("EncounterSim Reloaded");

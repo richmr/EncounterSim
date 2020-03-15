@@ -10,8 +10,10 @@ class monster extends EntityBase {
 class DumbMeleeGoblin extends monster {
   constructor(entityID, name="goblin", type="melee", CR=.25) {
     super(entityID, name, type, CR);
+    var startingHP = Dice.roll("2d6")[1];
     this.Details.Characteristics = {
-        HitPoints: Dice.roll("2d6"),
+        HitPoints: startingHP,
+        MaxHitPoints: startingHP,
         AC: 15,
         level: 1,
         Proficiency: 0
@@ -63,10 +65,7 @@ class DumbMeleeGoblin extends monster {
     return null;
   }
 
-  TakeEffect(DataObj) {
-    console.log("SimBase.TakeEffect(): " + this.name + " did not override TakeEffect");
-    return null;
-  }
+  // TakeEffect not overridden for EntityBase
 
   ActionResult(DataObj) {
     console.log("SimBase.ActionResult(): " + this.name + " did not override ActionResult");

@@ -59,9 +59,11 @@ class EntityBase extends SimBase {
     Team: "Not Set",
     // I attack the
     Other: "Not Set",
+    CurrentCondition: "Normal",
     LastAttacker: -1,
     LastTarget: -1,
     Characteristics: {
+      MaxHitPoints: 0,
       HitPoints: 0,
       AC: 10,
       level: 1,
@@ -85,12 +87,25 @@ class EntityBase extends SimBase {
       // Put saves the entity is proficient in here
       // Must match "STR", "DEX", etc for auto calcs to work
       Proficient: []
-    }
+    },
+    DamageResistance: [],
+    DamageImmunity: []
   }
 
   constructor(entityID, name) {
     super(name);
     this.entityID = entityID;
+  }
+
+  WhoAmI() {
+    var iAm = {
+      Name:this.Details.name,
+      EntityID: this.entityID,
+      MaxHP: this.Details.Characteristics.MaxHitPoints,
+      CurrentHP: this.Details.Characteristics.HitPoints,
+      CurrentCondition: this.CurrentCondition
+    };
+    return iAm;
   }
 
   CalcSaves() {
@@ -103,6 +118,10 @@ class EntityBase extends SimBase {
       }
       this.Details.Saves[save] = newsave;
     }
+  }
+
+  TakeEffect(DataObj) {
+    return BasicTakeEffects.ProcessDamage(DataObj, this.Details);
   }
 
 }
