@@ -11,9 +11,9 @@ Weapons["Damage"] = {
       Magic: magic,
       Type: type
     }
-    if (rollType="advantage") {
+    if (rollType=Dice.rollType.Advantage) {
       result["AttackRoll"] = Dice.rollWithAdvantage("1d20", AttackBonus);
-    } else if (rollType="disadvantage") {
+    } else if (rollType=Dice.rollType.Disadvantage) {
       result["AttackRoll"] = Dice.rollWithDisadvantage("1d20", AttackBonus);
     } else {
       result["AttackRoll"] = Dice.roll("1d20", AttackBonus);

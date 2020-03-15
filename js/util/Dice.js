@@ -65,5 +65,11 @@ var Dice = {
   critCheck: function(rollArray, critLevel=20) {
     // return true if the roll was a crit
     return (rollArray[0] >= critLevel);
+  },
+
+  rollType: {
+    Normal: 1,
+    Advantage: 2,
+    Disadvantage: 3
   }
-}
+};

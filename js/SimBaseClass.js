@@ -53,13 +53,12 @@ class SimBase {
 
 class EntityBase extends SimBase {
   Details = {
-    name: "Not Set",
     type: "Not Set",
     // I'm on
     Team: "Not Set",
     // I attack the
     Other: "Not Set",
-    CurrentCondition: "Normal",
+    CurrentCondition: EntityConditions.Normal,
     LastAttacker: -1,
     LastTarget: -1,
     Characteristics: {
@@ -92,14 +91,15 @@ class EntityBase extends SimBase {
     DamageImmunity: []
   }
 
-  constructor(entityID, name) {
+  constructor(entityID, name, type) {
     super(name);
     this.entityID = entityID;
+    this.Details.type = type;
   }
 
   WhoAmI() {
     var iAm = {
-      Name:this.Details.name,
+      Name:this.name,
       EntityID: this.entityID,
       MaxHP: this.Details.Characteristics.MaxHitPoints,
       CurrentHP: this.Details.Characteristics.HitPoints,

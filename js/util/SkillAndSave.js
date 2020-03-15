@@ -10,5 +10,11 @@ var SkillAndSave = {
       throw "SkillAndSave.bonus: attrScore (" + attrScore + ") is not between 1 and 30";
     }
     return result;
+  },
+
+  checkType: {
+    Attack: 1,
+    Skill: 2,
+    Save: 3
   }
 }

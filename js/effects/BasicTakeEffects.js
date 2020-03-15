@@ -31,10 +31,10 @@ BasicTakeEffects["NoSaveDamage"] = function(DamageObject, EntityDetails) {
       result.WasDamaged = DamageObject.Magnitude;
     }
     EntityDetails.Characteristics.HitPoints -= result.WasDamaged;
-    if (EntityDetails.Characteristics.HitPoints < 0) {
+    if (EntityDetails.Characteristics.HitPoints <= 0) {
       // Sim only lets them fall, full death not checked
       EntityDetails.Characteristics.HitPoints = 0;
-      EntityDetails.CurrentCondition = "Dead";
+      EntityDetails.CurrentCondition = EntityConditions.Dead;
     }
     // OnHit continuations will need to go here (Banes, etc..)
   }
