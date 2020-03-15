@@ -103,7 +103,7 @@ class EntityBase extends SimBase {
       EntityID: this.entityID,
       MaxHP: this.Details.Characteristics.MaxHitPoints,
       CurrentHP: this.Details.Characteristics.HitPoints,
-      CurrentCondition: this.CurrentCondition
+      CurrentCondition: this.Details.CurrentCondition
     };
     return iAm;
   }
@@ -121,7 +121,8 @@ class EntityBase extends SimBase {
   }
 
   TakeEffect(DataObj) {
-    return BasicTakeEffects.ProcessDamage(DataObj, this.Details);
+    var results = BasicTakeEffects.ProcessDamage(DataObj, this.Details);
+    return results;
   }
 
 }
