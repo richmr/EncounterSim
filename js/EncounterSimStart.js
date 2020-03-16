@@ -13,6 +13,7 @@ var RegisteredScriptFiles = [
 
   // monsters
   "js/monsters/monsters.js",
+  "js/monsters/goblins.js",
 
   // targeting
   "js/targeting/BasicTargeting.js",
@@ -38,4 +39,5 @@ function EncounterSimScripts() {
 $.when( $.ready ).then(function() {
   // Document is ready.
   EncounterSimScripts();
+  log.info("EncounterSim reloaded");
 });

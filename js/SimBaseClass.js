@@ -108,6 +108,12 @@ class EntityBase extends SimBase {
     return iAm;
   }
 
+  RollInitiative() {
+    // Returns entities initiative roll
+    var initBonus = SkillAndSave.bonus(this.Details.Attributes.DEX);
+    return Dice.roll("1d20",initBonus)[1];
+  }
+
   CalcSaves() {
     // Calculate save values based on attributes and proficiency
     // Relies on SkillAndSave
@@ -121,10 +127,12 @@ class EntityBase extends SimBase {
   }
 
   TakeEffect(DataObj) {
+    log.debug("EntityBase.TakeEffect: " + this.name + " is using default entity TakeEffect")
     var results = BasicTakeEffects.ProcessDamage(DataObj, this.Details);
     return results;
   }
 
+  
 }
 
 

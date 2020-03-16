@@ -73,5 +73,3 @@ function testGoblinGiveAndTake() {
   console.log("reciever stats: " + JSON.stringify(receiver.WhoAmI()));
 
 }
-
-console.log("EncounterSim Reloaded");
