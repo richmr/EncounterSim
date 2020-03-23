@@ -114,13 +114,13 @@ var AMR = {
         break;
       case AMR.AddDieToAttack:
         moddie = TryAgainObj.Die;
-        modifier = Dice.Roll(moddie);
+        modifier = Dice.Roll(moddie)[0];
         lastAction.Attacks[0].AttackRoll[1] += modifer;
         return lastAction;
         break;
       case AMR.AddDieToDamage:
         moddie = TryAgainObj.Die;
-        modifier = Dice.Roll(moddie);
+        modifier = Dice.Roll(moddie)[0];
         lastAction.Attacks[0].Magnitude += modifer;
         return lastAction;
         break;
