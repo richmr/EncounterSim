@@ -34,15 +34,15 @@ var Dice = {
   },
 
   rollWithAdvantage: function(dice = "1d20", bonus = 0) {
-    // Rolls the dice twice and returns the max
+    // Rolls the dice twice and returns the [maxroll, [roll1] [roll2]]
     roll1 = Dice.roll(dice, bonus);
     //console.log("Roll1: " + roll1);
     roll2 = Dice.roll(dice, bonus);
     //console.log("Roll2: " + roll2);
     if (this.totalRoll(roll1) >= this.totalRoll(roll2)) {
-      return roll1;
+      return [roll1, [roll1, roll2]];
     } else {
-      return roll2;
+      return [roll2, [roll1, roll2]];
     }
   },
 
@@ -51,15 +51,35 @@ var Dice = {
     roll1 = Dice.roll(dice, bonus);
     roll2 = Dice.roll(dice, bonus);
     if (this.totalRoll(roll1) >= this.totalRoll(roll2)) {
-      return roll2;
+      return [roll2, [roll1, roll2]];
     } else {
-      return roll1;
+      return [roll1, [roll1, roll2]];
+    }
+  },
+
+  pickLowerRoll: function(twoRolls) {
+    // expects list of two rolls and picks the lower
+    if (twoRolls[0][1] <= twoRolls[1][1]) {
+      return twoRolls[0];
+    } else {
+      return twoRolls[1];
+    }
+  },
+
+  pickHigherRoll: function(twoRolls) {
+    // expects list of two rolls and picks the lower
+    if (twoRolls[0][1] >= twoRolls[1][1]) {
+      return twoRolls[0];
+    } else {
+      return twoRolls[1];
     }
   },
 
   totalRoll: function(rollArray) {
     // Takes a dice roll array and returns the sum
-    return rollArray[0]+rollArray[1];
+    // 3/19 - This needs to be changed since the total is explicit in the roll now
+    // Really an unneccesary call
+    return rollArray[1];
   },
 
   critCheck: function(rollArray, critLevel=20) {
@@ -71,5 +91,10 @@ var Dice = {
     Normal: 1,
     Advantage: 2,
     Disadvantage: 3
+  },
+
+  CalcBonus: function (roll) {
+    // "Backs out" the bonus from the roll array
+    return roll[1] - roll[0];
   }
 };

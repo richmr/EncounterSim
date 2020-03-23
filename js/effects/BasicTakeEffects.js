@@ -36,7 +36,7 @@ BasicTakeEffects["NoSaveDamage"] = function(DamageObject, EntityDetails) {
       EntityDetails.Characteristics.HitPoints = 0;
       EntityDetails.CurrentCondition = EntityConditions.Dead;
     }
-    // OnHit continuations will need to go here (Banes, etc..)
+    // TODO: OnHit continuations will need to go here (Banes, etc..)
   }
   return result;
 }

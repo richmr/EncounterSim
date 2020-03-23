@@ -20,7 +20,13 @@ class SimBase {
     return null;
   }
 
-  YourTurn(DataObj) {
+  YourTurn(TeamObj, TryAgainObj) {
+    /* The TeamObj holds information about the entities on the field
+        Normally arranged into two teams: monsters and players
+      TryAgainObj is sent in response to reactions that cause rolls with Adv or
+      Disadvantage or change target, etc.  Handling these is not going to be fun
+        {Modification: VAL, Data: Varies per mod}
+    */
     console.log("SimBase.YourTurn(): " + this.name + " did not override YourTurn");
     return null;
   }
@@ -88,7 +94,8 @@ class EntityBase extends SimBase {
       Proficient: []
     },
     DamageResistance: [],
-    DamageImmunity: []
+    DamageImmunity: [],
+    LastAction: [],     // Hold the details of the last action the entity took
   }
 
   constructor(entityID, name, type) {
@@ -132,7 +139,7 @@ class EntityBase extends SimBase {
     return results;
   }
 
-  
+
 }
 
 

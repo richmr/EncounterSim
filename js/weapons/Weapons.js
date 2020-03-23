@@ -9,14 +9,20 @@ Weapons["Damage"] = {
     var result = {
       Save: false,
       Magic: magic,
-      Type: type
+      Type: type,
+      RollType: rollType
     }
     if (rollType=Dice.rollType.Advantage) {
-      result["AttackRoll"] = Dice.rollWithAdvantage("1d20", AttackBonus);
+      thisRoll = Dice.rollWithAdvantage("1d20", AttackBonus);
+      result["AttackRoll"] = thisRoll[0];
+      result["RawRolls"] = thisRoll[1];
     } else if (rollType=Dice.rollType.Disadvantage) {
-      result["AttackRoll"] = Dice.rollWithDisadvantage("1d20", AttackBonus);
+      thisRoll = Dice.rollWithDisadvantage("1d20", AttackBonus)
+      result["AttackRoll"] = thisRoll[0];
+      result["RawRolls"] = thisRoll[1];
     } else {
       result["AttackRoll"] = Dice.roll("1d20", AttackBonus);
+      result["RawRolls"] = [thisRoll];
     }
     damage = 0;
     if (Dice.critCheck(result.AttackRoll, critLevel)) {

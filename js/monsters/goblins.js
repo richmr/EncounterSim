@@ -27,7 +27,7 @@ class DumbMeleeGoblin extends monster {
     return null;
   }
 
-  YourTurn(TeamObj) {
+  YourTurn(TeamObj, TryAgainObj = null) {
     // This goblin just picks the first live foe in the list and attacks
     // Am I dead
     if (this.Details.Characteristics["HitPoints"] <= 0) {
@@ -41,6 +41,7 @@ class DumbMeleeGoblin extends monster {
         RemainingActions:0,
         Attacks: [Weapons.Martial.Melee.Scimitar(4,2)]
       };
+      this.Details.LastAction = action;
       return action;
     } else {
       return UnableToActReasons.AllEnemiesDead;

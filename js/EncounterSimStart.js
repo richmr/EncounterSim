@@ -10,6 +10,7 @@ var RegisteredScriptFiles = [
   "js/effects/BasicTakeEffects.js",
   "js/effects/EntityConditions.js",
   "js/effects/UnableToActReasons.js",
+  "js/effects/ActionModifyingReactions.js",
 
   // monsters
   "js/monsters/monsters.js",
